@@ -1,0 +1,7 @@
+<h3><%=l(:single_user_project_setting_title) %></h3>
+<fieldset><legend><%=l(:single_user_project_setting_description)%>:</legend>
+<% Project.active.each do |project| -%>
+	<%= check_box_tag "settings[projects][]", project.id, (@settings['projects'].include?(project.id.to_s) if @settings['projects']) %>
+	<%= project.name %><br />
+<% end -%>
+</fieldset>
