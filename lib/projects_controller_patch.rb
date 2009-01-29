@@ -11,6 +11,8 @@ module ProjectsControllerPatch
 		def find_project_with_single_user
 			if User.current.projects.size == 1 && Setting.plugin_redmine_single_user['projects'].include?(User.current.projects.first.id.to_s)
 				@project = User.current.projects.first
+			elsif	params[:action] == "show" && params[:id].nil?
+				redirect_to :controller => :my, :action => :page
 			else
 				find_project_without_single_user
 			end
